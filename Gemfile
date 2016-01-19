@@ -25,7 +25,7 @@ gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
 gem 'blacklight', github: 'projectblacklight/blacklight'
-gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit', branch: 'no_propagation'
+gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit'
 gem 'blacklight-access_controls', github: 'projectblacklight/blacklight-access_controls', branch: 'blacklight_6'
 gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
 gem 'settingslogic'
