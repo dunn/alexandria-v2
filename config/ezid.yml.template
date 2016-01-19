@@ -1,13 +1,17 @@
+default: &default
+  host:             ezid.cdlib.org
+  port:             443
+  user:             <%= Rails.application.secrets.ezid_user %>
+  password:         <%= Rails.application.secrets.ezid_pass %>
+
 development:
-  host:             ezid.cdlib.org
-  port:             443
-  user:             apitest
-  password:         ez_id_password
-  default_shoulder: ark:/99999/fk4
-test:
-  host:             ezid.cdlib.org
-  port:             443
-  user:             apitest
-  password:         ez_id_password
+  <<: *default
   default_shoulder: ark:/99999/fk4
 
+test:
+  <<: *default
+  default_shoulder: ark:/99999/fk4
+
+production:
+  <<: *default
+  default_shoulder: <%= Rails.application.secrets.ezid_shoulder %>
