@@ -46,7 +46,7 @@ def unzip(zipfile, dest)
   xml
 end
 
-temp = File.join(@settings['download_root'], "#{Time.now.to_i}")
+temp = File.join(@settings['download_root'], Time.now.to_i.to_s)
 Dir.mkdir temp
 
 @xml = []

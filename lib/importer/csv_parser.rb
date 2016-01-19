@@ -32,7 +32,7 @@ module Importer
         # Allow headers with the pattern *_type to specify the
         # record type for a local authority.
         # e.g. For an author, author_type might be 'Person'.
-        difference.delete_if {|h| h.match(type_header_pattern) }
+        difference.delete_if { |h| h.match(type_header_pattern) }
 
         fail "Invalid headers: #{difference.join(', ')}" unless difference.blank?
 
@@ -46,15 +46,14 @@ module Importer
         errors = []
         row.each_with_index do |header, i|
           next if header == 'work_type'
-          if header.match(type_header_pattern)
-            next_header = row[i + 1]
-            field_name = header.gsub('_type', '')
-            if next_header != field_name
-              errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
-            end
+          next unless header.match(type_header_pattern)
+          next_header = row[i + 1]
+          field_name = header.gsub('_type', '')
+          if next_header != field_name
+            errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
           end
         end
-        fail errors.join(", ") unless errors.blank?
+        fail errors.join(', ') unless errors.blank?
       end
 
       def valid_headers

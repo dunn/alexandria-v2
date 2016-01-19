@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def deny_access(exception)
     if controller.name == 'embargoes'
-      redirect_to({ controller: :catalog,  action: 'show' }, alert: exception.message)
+      redirect_to({ controller: :catalog, action: 'show' }, alert: exception.message)
     else
       super
     end

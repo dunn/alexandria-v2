@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TimeSpan < ActiveFedora::Base
   property :start, predicate: ::RDF::Vocab::EDM.begin
   property :finish, predicate: ::RDF::Vocab::EDM.end
@@ -13,11 +14,11 @@ class TimeSpan < ActiveFedora::Base
   has_many :date_copyrighted_images, inverse_of: :date_copyrighted, class_name: 'Image'
 
   # MODS date qualifiers
-  APPROX = 'approximate'
-  INFERRED = 'inferred'
-  QUESTIONABLE = 'questionable'
+  APPROX = 'approximate'.freeze
+  INFERRED = 'inferred'.freeze
+  QUESTIONABLE = 'questionable'.freeze
 
-  QUALIFIERS = [APPROX, INFERRED, QUESTIONABLE]
+  QUALIFIERS = [APPROX, INFERRED, QUESTIONABLE].freeze
 
   def self.qualifiers
     QUALIFIERS

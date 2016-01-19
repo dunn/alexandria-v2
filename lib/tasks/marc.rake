@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 namespace :marc do
   require 'httpclient'
 
-  SRU_BASE = '/sba01pub?version=1.1&operation=searchRetrieve'
+  SRU_BASE = '/sba01pub?version=1.1&operation=searchRetrieve'.freeze
   BATCH_SIZE = 150
 
   desc 'Download MARC records from Pegasus'

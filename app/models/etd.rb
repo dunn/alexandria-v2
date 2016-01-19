@@ -3,7 +3,7 @@ class ETD < ActiveFedora::Base
   include Metadata
   include LocalAuthorityHashAccessor
   include HumanReadableType
-  self.human_readable_type = "Thesis or dissertation"
+  self.human_readable_type = 'Thesis or dissertation'
 
   include Hydra::AccessControls::Embargoable
   include EmbargoBehavior

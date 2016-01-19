@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 module Importer
   class ModsParser
     ORIGIN_TEXT = 'Converted from MODS 3.4 to local RDF profile by ADRL'.freeze
 
-    NAMESPACES = { 'mods'.freeze => Mods::MODS_NS }
+    NAMESPACES = { 'mods'.freeze => Mods::MODS_NS }.freeze
 
     def initialize(file)
       @file = file
@@ -217,7 +218,7 @@ module Importer
       end
 
       def finish_point(node)
-        node.css("[point=\"end\"]")
+        node.css('[point="end"]')
       end
 
       def start_point(node)

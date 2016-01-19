@@ -2,7 +2,7 @@
 require 'blacklight/catalog'
 
 class CatalogController < ApplicationController
-          include BlacklightRangeLimit::ControllerOverride
+  include BlacklightRangeLimit::ControllerOverride
   # helper Openseadragon::OpenseadragonHelper
 
   include Hydra::Catalog
@@ -26,8 +26,8 @@ class CatalogController < ApplicationController
     return if can?(:discover, permissions)
 
     fail Hydra::AccessDenied.new(
-           'You do not have sufficient access privileges to access this document.',
-           :discover, params[:id])
+      'You do not have sufficient access privileges to access this document.',
+      :discover, params[:id])
   end
 
   # Turn off SMS

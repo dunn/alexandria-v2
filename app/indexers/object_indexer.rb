@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ObjectIndexer < ActiveFedora::IndexingService
   def rdf_service
     RDF::DeepIndexingService
@@ -10,7 +11,7 @@ class ObjectIndexer < ActiveFedora::IndexingService
   OTHER = Solrizer.solr_name('date_other', :displayable)
 
   SORTABLE_DATE = Solrizer.solr_name('date', :sortable)
-  FACETABLE_YEAR = 'year_iim'
+  FACETABLE_YEAR = 'year_iim'.freeze
 
   COLLECTION_LABEL = Solrizer.solr_name('collection_label', :symbol)
   COLLECTION = Solrizer.solr_name('collection', :symbol)

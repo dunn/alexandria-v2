@@ -22,7 +22,7 @@ class ImageForm
     model.record_origin
   end
 
-  NESTED_ASSOCIATIONS = [:created, :issued, :date_valid, :date_other, :date_copyrighted]
+  NESTED_ASSOCIATIONS = [:created, :issued, :date_valid, :date_other, :date_copyrighted].freeze
 
   protected
 
@@ -55,10 +55,10 @@ class ImageForm
       if reflection.collection?
         association = model.send(key)
 
-        if association.empty?
-          self[key] = Array(association.build)
-        else
-          self[key] = association
+        self[key] = if association.empty?
+                      Array(association.build)
+                    else
+                      association
         end
       else
         self[key] = model.send(key)
@@ -120,7 +120,7 @@ class ImageForm
           attr_key = "#{row.delete(:predicate)}_attributes"
           relations[attr_key] ||= []
           relations[attr_key] << row.with_indifferent_access
-        end
+        end,
       )
     end
 

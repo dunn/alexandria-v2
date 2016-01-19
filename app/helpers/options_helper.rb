@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module OptionsHelper
   def digital_origin_options
     local_string_options('digital_origin')
