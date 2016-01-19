@@ -88,4 +88,9 @@ group :development do
   gem 'capistrano-rails', '>= 1.1.3'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
+
+  # for https://github.com/dgutov/robe
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'method_source'
 end
