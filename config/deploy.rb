@@ -6,7 +6,7 @@ set :scm, :git
 set :repo_url, ENV.fetch('REPO', 'https://github.com/curationexperts/alexandria-v2.git')
 set :deploy_to, '/opt/alex2'
 
-set :stages, %w(production vagrant)
+set :stages, %w(production vagrant stage)
 set :default_stage, 'vagrant'
 
 set :log_level, :debug
