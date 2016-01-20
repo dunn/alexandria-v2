@@ -11,12 +11,17 @@ public/assets
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
+# Ignore logfiles and tempfiles and patchfiles
 /log/*
 !/log/.keep
+/logs
+/*.log
+
 /tmp
 /jetty
-.rvmrc
+/.rvmrc
+
+/*.patch
 
 # Passwords etc
 config/*.yml
