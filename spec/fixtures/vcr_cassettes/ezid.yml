@@ -89,7 +89,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        _target: http://test.host/lib/ark:/99999/fk4c252k0f
+        _target: http://localhost:3000/lib/ark:/99999/fk4c252k0f
         _profile: erc
         _export: yes
         _status: public
