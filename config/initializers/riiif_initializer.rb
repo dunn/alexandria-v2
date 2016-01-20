@@ -16,6 +16,7 @@ Riiif::Image.file_resolver.id_to_uri = lambda do |id|
     logger.info "Riiif resolved #{id} to #{url}"
   end
 end
-Riiif::Image.file_resolver.basic_auth_credentials = [ActiveFedora.fedora.user, ActiveFedora.fedora.password]
+Riiif::Image.file_resolver.basic_auth_credentials = [Rails.application.secrets.fedora_user,
+                                                     Rails.application.secrets.fedora_pass]
 
 Riiif::Engine.config.cache_duration_in_days = 365
