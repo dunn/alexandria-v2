@@ -33,7 +33,7 @@ class UpdateMetadataFromProquestFile
 
   def embargo_start_date
     if attributes[:DISS_agreement_decision_date].blank?
-      transformed_start_date
+      transformed_start_date(attributes)
     else
       Date.parse(attributes[:DISS_agreement_decision_date])
     end
@@ -51,9 +51,9 @@ class UpdateMetadataFromProquestFile
     #
     # See also https://help.library.ucsb.edu/browse/DIGREPO-466
     @embargo_end = if attributes[:DISS_agreement_decision_date].blank?
-                     parse_embargo_code
+                     parse_embargo_code(attributes)
                    else
-                     parse_delayed_release_date
+                     parse_delayed_release_date(attributes)
                    end
   end
 
@@ -64,7 +64,7 @@ class UpdateMetadataFromProquestFile
   def policy_after_embargo
     return @policy_after_embargo if @policy_after_embargo
     @policy_after_embargo = if !attributes[:DISS_access_option].blank?
-                              parse_access_option
+                              parse_access_option(attributes)
                             elsif batch_3?
                               AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
                             end
@@ -118,9 +118,9 @@ class UpdateMetadataFromProquestFile
     # Therefore, all DISS_accept_date with a value of 01/01/YYYY
     # for ETDs should be interpreted as 12/31/YYYY for purposes
     # of calculating the embargo release date.
-    def transformed_start_date
-      unless attributes[:DISS_accept_date].blank?
-        date = Date.parse(attributes[:DISS_accept_date])
+    def transformed_start_date(attrs)
+      unless attrs[:DISS_accept_date].blank?
+        date = Date.parse(attrs[:DISS_accept_date])
         if date.month == 1 && date.day == 1
           date = Date.parse("#{date.year}-12-31")
         end
@@ -141,23 +141,23 @@ class UpdateMetadataFromProquestFile
     end
 
     # Calculate the release date based on <DISS_delayed_release>
-    def parse_delayed_release_date
-      if attributes[:DISS_delayed_release].blank?
+    def parse_delayed_release_date(attrs)
+      if attrs[:DISS_delayed_release].blank?
         nil
-      elsif attributes[:DISS_delayed_release] =~ /^.*2\s*year.*\Z/i
+      elsif attrs[:DISS_delayed_release] =~ /^.*2\s*year.*\Z/i
         two_year_embargo
-      elsif attributes[:DISS_delayed_release] =~ /^.*1\s*year.*\Z/i
+      elsif attrs[:DISS_delayed_release] =~ /^.*1\s*year.*\Z/i
         one_year_embargo
-      elsif attributes[:DISS_delayed_release] =~ /^.*6\s*month.*\Z/i
+      elsif attrs[:DISS_delayed_release] =~ /^.*6\s*month.*\Z/i
         six_month_embargo
       else
-        Date.parse(attributes[:DISS_delayed_release])
+        Date.parse(attrs[:DISS_delayed_release])
       end
     end
 
     # Calculate the release date based on <embargo_code>
-    def parse_embargo_code
-      case attributes[:embargo_code]
+    def parse_embargo_code(attrs)
+      case attrs[:embargo_code]
       when '1'
         six_month_embargo
       when '2'
@@ -165,18 +165,18 @@ class UpdateMetadataFromProquestFile
       when '3'
         two_year_embargo
       when '4'
-        if attributes[:embargo_remove_date].blank?
+        if attrs[:embargo_remove_date].blank?
           nil
         else
-          Date.parse(attributes[:embargo_remove_date])
+          Date.parse(attrs[:embargo_remove_date])
         end
       end
     end
 
-    def parse_access_option
-      if attributes[:DISS_access_option] =~ /^.*open access.*\Z/i
+    def parse_access_option(attrs)
+      if attrs[:DISS_access_option] =~ /^.*open access.*\Z/i
         AdminPolicy::PUBLIC_POLICY_ID
-      elsif attributes[:DISS_access_option] =~ /^.*campus use.*\Z/i
+      elsif attrs[:DISS_access_option] =~ /^.*campus use.*\Z/i
         AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
       else
         # If we can't figure out the correct policy,
