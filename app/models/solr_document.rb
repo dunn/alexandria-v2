@@ -43,7 +43,9 @@ class SolrDocument
 
   # blank if there is no embargo or the embargo status
   def after_embargo_status
-    return if self['visibility_after_embargo_ssim'].blank?
+    return if self['visibility_after_embargo_ssim'].blank? ||
+              self['embargo_release_date_dtsi'].blank?
+
     date = Date.parse self['embargo_release_date_dtsi']
     policy = AdminPolicy.find(self['visibility_after_embargo_ssim'].first)
     " - Becomes #{policy} on #{date.to_s(:us)}"
