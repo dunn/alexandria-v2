@@ -7,7 +7,7 @@ rubocop:
 	rubocop --format simple --config .rubocop.yml --auto-correct
 
 spec:
-	CI=1 RAILS_ENV=test bundle exec rake ci
+	CI=1 RAILS_ENV=test bundle exec rake ci --trace
 
 stage:
 	REPO=git@github.library.ucsb.edu:ADRL/alexandria.git bundle exec cap stage deploy
