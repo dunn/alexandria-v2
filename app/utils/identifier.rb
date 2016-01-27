@@ -1,11 +1,11 @@
 module Identifier
   def self.treeify(identifier)
-    raise "Treeify?"
+    fail 'Treeify?'
     (identifier.scan(/..?/).first(4) + [identifier]).join('/')
   end
 
   def self.noidify(id)
-    raise "Noidify?"
+    fail 'Noidify?'
     id.to_s.split('/')[-1]
   end
 

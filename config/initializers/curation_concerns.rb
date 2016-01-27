@@ -5,7 +5,7 @@ CurationConcerns.configure do |config|
 
   config.fits_to_desc_mapping = {
     file_title: :title,
-    file_author: :creator
+    file_author: :creator,
   }
 
   config.max_days_between_audits = 7
@@ -30,7 +30,7 @@ CurationConcerns.configure do |config|
     'Research Paper' => 'Research Paper',
     'Software or Program Code' => 'Software or Program Code',
     'Video' => 'Video',
-    'Other' => 'Other'
+    'Other' => 'Other',
   }
 
   config.display_microdata = true
@@ -43,11 +43,11 @@ CurationConcerns.configure do |config|
   config.permission_levels = {
     'Choose Access' => 'none',
     'View/Download' => 'read',
-    'Edit' => 'edit'
+    'Edit' => 'edit',
   }
 
   config.owner_permission_levels = {
-    'Edit' => 'edit'
+    'Edit' => 'edit',
   }
 
   # Enable displaying usage statistics in the UI
@@ -96,4 +96,3 @@ CurationConcerns.configure do |config|
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
-

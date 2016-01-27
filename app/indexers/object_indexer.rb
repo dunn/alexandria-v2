@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ObjectIndexer < CurationConcerns::WorkIndexer
   def rdf_service
     RDF::DeepIndexingService
