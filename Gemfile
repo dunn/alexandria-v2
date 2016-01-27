@@ -12,20 +12,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'hydra-head', '~> 9.6.0'
-gem 'active-fedora', '~> 9.7.0'
-
-gem 'active-triples', '~> 0.7.4'
-gem 'hydra-editor', '~> 1.2.0'
 gem 'hydra-role-management'
-gem 'hydra-collections', github: 'projecthydra/hydra-collections'
-gem 'hydra-works', '0.6.0'
+gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
-gem 'blacklight', '~> 6.0.0'
+gem 'blacklight', '~> 6.0.1'
 gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit'
-gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
+gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced_search', branch: 'no_monkey_patch'
+gem 'blacklight-gallery', '~> 0.5.0'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'

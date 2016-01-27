@@ -32,21 +32,21 @@ Rails.application.routes.draw do
 
   get 'lib/:id' => 'catalog#show', constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
 
-  resources :downloads, only: :show
-  resources :embargoes, only: [:index, :destroy] do
-    collection do
-      patch :update
-    end
-  end
-
-  resources :etds, only: [] do
-    resource :access, only: [:edit, :update, :destroy], controller: 'access'
-    concerns :exportable
-  end
-  resources :images, only: [] do
-    resource :access, only: [:edit, :update, :destroy], controller: 'access'
-    concerns :exportable
-  end
+  # resources :downloads, only: :show
+  # resources :embargoes, only: [:index, :destroy] do
+  #   collection do
+  #     patch :update
+  #   end
+  # end
+  #
+  # resources :etds, only: [] do
+  #   resource :access, only: [:edit, :update, :destroy], controller: 'access'
+  #   concerns :exportable
+  # end
+  # resources :images, only: [] do
+  #   resource :access, only: [:edit, :update, :destroy], controller: 'access'
+  #   concerns :exportable
+  # end
 
   resources :local_authorities, only: :index
 
@@ -56,6 +56,14 @@ Rails.application.routes.draw do
   mount Qa::Engine => '/qa'
   mount HydraEditor::Engine => '/'
   mount Hydra::Collections::Engine => '/'
+
+  mount CurationConcerns::Engine, at: '/'
+  curation_concerns_collections
+  curation_concerns_basic_routes do
+    resource :access, only: [:edit, :update, :destroy], controller: 'access'
+    concerns :exportable
+  end
+  curation_concerns_embargo_management
 
   resources :records, only: :destroy do
     get 'new_merge', on: :member

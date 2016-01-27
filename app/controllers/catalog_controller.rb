@@ -1,12 +1,11 @@
 # -*- encoding : utf-8 -*-
 class CatalogController < ApplicationController
+  include CurationConcerns::CatalogController
   include BlacklightRangeLimit::ControllerOverride
   # helper Openseadragon::OpenseadragonHelper
-
-  include Hydra::Catalog
-  include Hydra::Controller::ControllerBehavior
   include ConvertIds
 
+  self.theme = 'alexandria'
   before_action :convert_ark_to_id, only: :show
 
   rescue_from Blacklight::Exceptions::RecordNotFound do |e|

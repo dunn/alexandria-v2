@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe FileSetIndexer do
-  let(:file_set) { FileSet.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
+  let(:file_set) { FileSet.new(id: 'bf742775-2a24-46dc-889e-cca03b27b5f3') }
   before do
     Hydra::Works::AddFileToFileSet.call(file_set,
                                         File.new(fixture_file_path('pdf/sample.pdf')),

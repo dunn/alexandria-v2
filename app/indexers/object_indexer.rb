@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-class ObjectIndexer < ActiveFedora::IndexingService
+class ObjectIndexer < CurationConcerns::WorkIndexer
   def rdf_service
     RDF::DeepIndexingService
   end

@@ -1,4 +1,4 @@
-class AccessController < ApplicationController
+class CurationConcerns::AccessController < ApplicationController
   include Hydra::Controller::ControllerBehavior
 
   before_action :load_curation_concern
@@ -19,20 +19,20 @@ class AccessController < ApplicationController
       EmbargoService.remove_embargo(curation_concern)
     end
     curation_concern.save!
-    redirect_to solr_document_path(curation_concern)
+    redirect_to main_app.solr_document_path(curation_concern)
   end
 
   def destroy
     authorize! :update_rights, curation_concern
     EmbargoService.remove_embargo(curation_concern)
     curation_concern.save!
-    redirect_to solr_document_path(curation_concern)
+    redirect_to main_app.solr_document_path(curation_concern)
   end
 
   protected
 
     def load_curation_concern
-      id = Identifier.treeify(params[:etd_id] || params[:image_id])
+      id = params[:etd_id] || params[:image_id]
       @curation_concern = ActiveFedora::Base.find(id)
     end
 
@@ -43,7 +43,7 @@ class AccessController < ApplicationController
 
     def deny_access(exception)
       if params[:action] == 'edit'
-        redirect_to solr_document_path(curation_concern), alert: exception.message
+        redirect_to main_app.solr_document_path(curation_concern), alert: exception.message
       else
         super
       end
