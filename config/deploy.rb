@@ -38,6 +38,7 @@ set :linked_files,
       config/application.yml
       config/blacklight.yml
       config/database.yml
+      config/environment.rb
       config/ezid.yml
       config/fedora.yml
       config/ldap.yml

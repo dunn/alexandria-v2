@@ -13,4 +13,4 @@ stage:
 	REPO=git@github.library.ucsb.edu:ADRL/alexandria.git bundle exec cap stage deploy
 
 vagrant:
-	SERVER=127.0.0.1 REPO=/vagrant/alex2 bundle exec cap vagrant deploy
+	SERVER=127.0.0.1 REPO=/vagrant/alexandria-v2 bundle exec cap vagrant deploy
