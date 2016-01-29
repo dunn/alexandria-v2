@@ -13,12 +13,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
 gem 'hydra-role-management'
+gem 'hydra-collections', github: 'projecthydra/hydra-collections', branch: 'multivalue_metadata'
 gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
 gem 'blacklight', '~> 6.0.1'
-gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit'
+gem 'blacklight_range_limit', '~> 6.0.0'
 gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced_search', branch: 'no_monkey_patch'
 gem 'blacklight-gallery', '~> 0.5.0'
 gem 'settingslogic'

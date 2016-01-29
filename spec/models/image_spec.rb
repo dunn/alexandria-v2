@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Image do
   it 'has a title' do
-    subject.title = 'War and Peace'
-    expect(subject.title).to eq 'War and Peace'
+    subject.title = ['War and Peace']
+    expect(subject.title).to eq ['War and Peace']
   end
 
   it 'has collections' do
@@ -65,7 +65,7 @@ describe Image do
     end
 
     context 'for date created' do
-      before { subject.title = 'Test title' }
+      before { subject.title = ['Test title'] }
 
       it 'allows blank ids' do
         subject.save!
@@ -87,7 +87,7 @@ describe Image do
 
     context 'for notes' do
       before do
-        subject.title = 'Test title'
+        subject.title = ['Test title']
         subject.notes_attributes = [{ value: 'Title from item.' }, { value: "Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25." }, { value: "[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara.", note_type: 'preferred citation' }]
       end
 
@@ -125,7 +125,7 @@ describe Image do
   end
 
   describe 'dates' do
-    let(:image) { Image.new }
+    let(:image) { build(:image) }
 
     describe 'ranges' do
       before do
@@ -138,6 +138,17 @@ describe Image do
         expect(image.created.first.finish).to eq ['1912']
         expect(image.issued.first.start).to eq ['1913']
         expect(image.issued.first.finish).to eq ['1917']
+      end
+
+      context "when loading from fedora" do
+        before do
+          image.save!
+          image.reload
+        end
+
+        it 'loads them' do
+          expect(image.issued.first.start).to eq ['1913']
+        end
       end
     end
 
@@ -163,7 +174,7 @@ describe Image do
     context "with a local vocabulary" do
       before do
         AdminPolicy.ensure_admin_policy_exists
-        subject.title = 'Test title'
+        subject.title = ['Test title']
       end
 
       let(:topic) { Topic.create(label: ['Birds of California']) }
