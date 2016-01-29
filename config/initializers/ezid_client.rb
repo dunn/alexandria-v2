@@ -19,6 +19,6 @@ Ezid::Client.configure do |config|
   config.host             = options.fetch(:host)
   config.port             = options.fetch(:port)
   config.use_ssl          = (options.fetch(:port) != 80)
-  config.default_shoulder = Rails.application.secrets.ezid_shoulder
+  config.default_shoulder = Rails.application.secrets.ezid_default_shoulder
   config.logger           = Rails.logger
 end
