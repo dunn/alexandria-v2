@@ -238,9 +238,9 @@ fi
 
 # Symlink Ansible roles
 if [[ "$1" == "local" ]]; then
-  ln -sf "$(pwd)/provisioning/osx/roles" ansible/
+  ln -sf "$(pwd)/provisioning/osx/roles/*" ansible/roles/
 else
-  ln -sf "$(pwd)/provisioning/centos/roles" ansible/
+  ln -sf "$(pwd)/provisioning/centos/roles/*" ansible/roles/
 fi
 
 if [ "$1" == "production" ]; then
