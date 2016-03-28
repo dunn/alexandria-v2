@@ -55,12 +55,15 @@ class CatalogController < ApplicationController
 
     config.show.partials = [:media, :show]
 
-    # solr fields that will be treated as facets by the blacklight application
-    #   The ordering of the field names is the order of the display
+    # Solr fields that will be treated as facets by the blacklight application
+    #
+    # The ordering of the field names is the order of the display.
     #
     # Setting a limit will trigger Blacklight's 'more' facet values link.
     #
-    # * If left unset, then all facet values returned by solr will be displayed.
+    # * If left unset, then all facet values returned by solr will be
+    #   displayed (not always all results in Fedora; see
+    #   https://github.library.ucsb.edu/ADRL/alexandria/issues/13)
     #
     # * If set to an integer, then "f.somefield.facet.limit" will be added to
     #   solr request, with actual solr request being +1 your configured limit --
@@ -80,7 +83,7 @@ class CatalogController < ApplicationController
     # facet bar
     config.add_facet_field solr_name('work_type_label', :facetable), label: 'Type of Resource'
     config.add_facet_field solr_name('location_label', :facetable), label: 'Location'
-    config.add_facet_field ContributorIndexer::FACETABLE_CONTRIBUTOR, label: 'Contributor'
+    config.add_facet_field ContributorIndexer::FACETABLE_CONTRIBUTOR, label: 'Contributor', limit: true
     config.add_facet_field solr_name('lc_subject_label', :facetable), label: 'Subject', limit: 20
     config.add_facet_field solr_name('publisher', :facetable), label: 'Publisher'
     config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: 'Year', range: true
