@@ -1,6 +1,7 @@
 set :stage, :production
 set :rails_env, 'production'
 
+# Comment out if deploying to a server with a public IP
 set :default_env,
     'http_proxy' => 'http://10.3.100.201:3128',
     'https_proxy' => 'http://10.3.100.201:3128'
