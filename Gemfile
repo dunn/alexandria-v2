@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
+gem 'active-fedora', '~> 9.10.4'
 gem 'hydra-head', '~> 9.8.1'
 gem 'hydra-role-management'
 gem 'curation_concerns', '~> 0.10.0'

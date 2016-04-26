@@ -657,6 +657,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active-fedora (~> 9.10.4)
   active-triples (~> 0.7.5)
   american_date (~> 1.1.0)
   awesome_print
